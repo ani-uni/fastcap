@@ -1,4 +1,4 @@
-name: Publish fastcap
+name: Publish @ani-uni/fastcap
 on:
   push:
     tags:
@@ -30,15 +30,15 @@ jobs:
       - name: Install dependencies
         run: vp install
 
-      - name: Build fastcap
+      - name: Build @ani-uni/fastcap
         run: |
           cd ${{ github.workspace }}
           vp run prepublishOnly
 
-      - name: Publish fastcap
+      - name: Publish @ani-uni/fastcap
         run: |
           cd ${{ github.workspace }}
-          npm publish --provenance --access public
+          pnpm publish --provenance --access public
 
       - run: vpx changelogithub
         env:
