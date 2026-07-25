@@ -1,0 +1,45 @@
+name: Publish fastcap
+on:
+  push:
+    tags:
+      - "v*.*.*"
+    paths:
+      - package.json
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: voidzero-dev/setup-vp@v1
+        with:
+          node-version: "26"
+          cache: true
+
+      - name: Install dependencies
+        run: vp install
+
+      - name: Build fastcap
+        run: |
+          cd ${{ github.workspace }}
+          vp run prepublishOnly
+
+      - name: Publish fastcap
+        run: |
+          cd ${{ github.workspace }}
+          npm publish --provenance --access public
+
+      - run: vpx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

@@ -1,0 +1,52 @@
+{
+  "name": "fastcap",
+  "version": "0.0.1",
+  "description": "A tool to quickly configure the map of progress between the videos and the real episodes'.",
+  "homepage": "https://github.com/ani-uni/fastcap#readme",
+  "bugs": {
+    "url": "https://github.com/ani-uni/fastcap/issues"
+  },
+  "license": "LGPL-3.0-or-later",
+  "author": "rinne",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ani-uni/fastcap.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "check": "vp check",
+    "prepublishOnly": "vp run build",
+    "prepare": "vp config"
+  },
+  "dependencies": {
+    "@js-temporal/polyfill": "^0.5.1",
+    "smol-toml": "^1.7.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.17.0",
+      "onFail": "download"
+    }
+  }
+}
