@@ -38,7 +38,7 @@ jobs:
       - name: Publish @ani-uni/fastcap
         run: |
           cd ${{ github.workspace }}
-          pnpm publish --provenance --access public
+          vpx pnpm publish --provenance --access public
 
       - run: vpx changelogithub
         env:
