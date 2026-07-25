@@ -109,14 +109,14 @@ tmdb_urlc = "tv/285933/season/1/episode/1"
 安装npm包:
 
 ```sh
-vp add fastcap
-#[pnpm | bun | npm | yarn] install fastcap
+vp add @ani-uni/fastcap
+#[pnpm | bun | npm | yarn] install @ani-uni/fastcap
 ```
 
 调用方法:
 
 ```ts
-import FastCap from "fastcap";
+import FastCap from "@ani-uni/fastcap";
 
 // 创建空的FastCap实例
 const fc = new FastCap();
