@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import { zFastCapYueCodec } from "./yue.ts";
+import { reProgressTimestampSource, zFastCapYueCodec, zProgressTimestampCodec } from "./yue.ts";
 import { zFastCapTOMLWrappedCodec } from "./toml.ts";
 import { zFastCapConf } from "./types-with-mods.ts";
 
@@ -26,3 +26,4 @@ export class FastCap {
 }
 
 export default FastCap;
+export const FastCapUtils = { zProgressTimestampCodec, reProgressTimestampSource };

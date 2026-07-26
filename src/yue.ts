@@ -7,7 +7,7 @@ import { zFastCapConf } from "./types-with-mods.ts";
 
 const RELATIVE_TO = Temporal.PlainDate.from("1970-01-01");
 
-const zProgressTimestampCodec = z.codec(z.string(), z.int().nonnegative(), {
+export const zProgressTimestampCodec = z.codec(z.string(), z.int().nonnegative(), {
   decode: (pt) => {
     const [h, m, sec = "0"] = pt.split(":");
     const duration = Temporal.Duration.from(`PT${h}H${m}M${sec}S`);
@@ -36,7 +36,7 @@ const zProgressTimestampCodec = z.codec(z.string(), z.int().nonnegative(), {
   },
 });
 
-const reProgressTimestampSource = String.raw`\d+:\d{2}:\d{2}(?:\.\d{1,3})?`;
+export const reProgressTimestampSource = String.raw`\d+:\d{2}:\d{2}(?:\.\d{1,3})?`;
 const rePart = new RegExp(
   String.raw`^片段\d+：` +
     String.raw`从(?<begin>${reProgressTimestampSource})` +
@@ -65,7 +65,7 @@ const zFastCapUnitYueCodec = z.codec(z.string(), zFastCapConf.shape.f.element, {
       } else if (chunk.startsWith("剧集")) {
         const t = chunk.match(/剧集(\d+)：(.+)/)?.slice(1);
         if (t) {
-          const temp_ep_id = Number.parseInt(t[0]);
+          const temp_ep_id = Number.parseInt(t[0], 10);
           const temp_3rd_ref: Record<string, string> = {};
           for (const pt of t[1].split("，")) {
             const [pt_key, pt_val] = pt.split("=").map((s) => s.trim());
