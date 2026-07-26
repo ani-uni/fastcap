@@ -1,6 +1,6 @@
 {
   "name": "@ani-uni/fastcap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A tool to quickly configure the map of progress between the videos and the real episodes'.",
   "homepage": "https://github.com/ani-uni/fastcap#readme",
   "bugs": {
