@@ -128,8 +128,14 @@ const fc = new FastCap(yue);
 // 传入fastcap-json
 const fc = new FastCap(json);
 
+// 原地精简配置，并返回当前实例以支持链式调用
+fc.fmt();
+const formattedToml = new FastCap(json).fmt().toString("toml");
+
 // 导出
 const toml = fc.toString("toml");
 const yue = fc.toString("yue");
 const json = fc.toJSON();
 ```
+
+`fmt()`会删除没有片段和临时剧集的空资源，并根据共通的`bgmtv_epid`或`tmdb_urlc`在全局补全、合并剧集信息及统一临时剧集ID。若同一剧集关联了冲突的第三方ID，格式化会抛出错误，原实例保持不变。

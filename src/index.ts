@@ -1,4 +1,5 @@
 import type { z } from "zod";
+import { formatFastCapResources } from "./fmt.ts";
 import { reProgressTimestampSource, zFastCapYueCodec, zProgressTimestampCodec } from "./yue.ts";
 import { zFastCapTOMLWrappedCodec } from "./toml.ts";
 import { zFastCapConf } from "./types-with-mods.ts";
@@ -14,6 +15,10 @@ export class FastCap {
     if (input.includes("本资源FastCap配置如下")) this.#f = zFastCapYueCodec.decode(input).f;
     else if (input.includes("fastcap")) this.#f = zFastCapTOMLWrappedCodec.decode(input).f;
     else throw new Error("无效的FastCap配置");
+  }
+  fmt(): this {
+    this.#f = formatFastCapResources(this.#f);
+    return this;
   }
   toJSON() {
     return { f: this.#f };
